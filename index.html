@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Imágenes</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: sans-serif;
+        }
+
+        .contenedor-imagen {
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            max-width: 100%; /* Evita que la imagen se salga de la pantalla en móviles */
+            display: inline-block; /* Se ajusta al ancho real de la imagen */
+        }
+
+        img {
+            display: block;
+            height: auto; /* Mantiene la proporción original */
+            max-width: 100%; /* Evita que la imagen se pixele si es muy pequeña */
+            border-radius: 8px;
+            image-rendering: -webkit-optimize-contrast; /* Ayuda a que se vean más nítidas */
+        }
+
+        .espacio-texto {
+            height: 3em; /* Espacio exacto de 3 líneas de texto */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-imagen">
+        <img src="1.png" alt="Imagen 1">
+    </div>
+    <div class="espacio-texto"></div>
+
+    <div class="contenedor-imagen">
+        <img src="2.png" alt="Imagen 2">
+    </div>
+</body>
+</html>
