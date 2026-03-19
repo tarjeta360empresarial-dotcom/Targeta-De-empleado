@@ -87,61 +87,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Botón WhatsApp flotante */
-    .whatsapp-fab {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 68px;
-      height: 68px;
-      background: var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
-      cursor: pointer;
-      z-index: 9999;
-      transition: var(--transition);
-    }
-
-    .whatsapp-fab:hover {
-      transform: scale(1.12) translateY(-4px);
-      box-shadow: 0 12px 32px rgba(37,211,102,0.45);
-    }
-
-    .whatsapp-fab:active {
-      transform: scale(0.96);
-    }
-
-    .whatsapp-icon {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-    }
-
-    .whatsapp-fab::after {
-      content: "Contacto";
-      position: absolute;
-      right: 90px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #111;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s;
-    }
-
-    .whatsapp-fab:hover::after {
-      opacity: 1;
-      transform: translateY(-50%) translateX(-8px);
-    }
-
     /* Área clickable del QR */
     .qr-overlay-link {
       position: absolute;
@@ -180,6 +125,128 @@
         transform: translate(8%, 8%);
       }
     }
+
+    /* ==================================================
+       SOLO LO NUEVO AGREGADO PARA EL BOTÓN DE GMAIL
+    ================================================== */
+
+    .gmail-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 100px; /* se coloca a la izquierda del botón WhatsApp */
+      width: 68px;
+      height: 68px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      cursor: pointer;
+      z-index: 9999;
+      transition: var(--transition);
+    }
+
+    .gmail-fab:hover {
+      transform: scale(1.12) translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+
+    .gmail-fab:active {
+      transform: scale(0.96);
+    }
+
+    .gmail-icon {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .gmail-fab::after {
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+    }
+
+    .gmail-fab:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-8px);
+    }
+
+    @media (max-width: 640px) {
+      .gmail-fab {
+        bottom: 16px;
+        right: 84px;
+        width: 60px;
+        height: 60px;
+      }
+      .gmail-icon {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+      /* Botón WhatsApp flotante */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 68px;
+      height: 68px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+      cursor: pointer;
+      z-index: 9999;
+      transition: var(--transition);
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.12) translateY(-4px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.45);
+    }
+
+    .whatsapp-fab:active {
+      transform: scale(0.96);
+    }
+
+    .whatsapp-icon {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .whatsapp-fab::after {
+      content: " ";
+      position: absolute;
+      right: 90px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #111;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+    }
+
+    .whatsapp-fab:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-8px);
+    }
+
   </style>
 </head>
 <body>
@@ -190,7 +257,6 @@
         <div class="loader"><div class="spinner"></div></div>
         <img src="1.png" alt="Tarjeta con QR" loading="lazy"
              onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
-
         <a href="https://tarjeta360empresarial-dotcom.github.io/Targeta/"
            target="_blank" rel="noopener noreferrer"
            class="qr-overlay-link"
@@ -206,6 +272,12 @@
      class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
     <img src="WhatsApp.png" alt="WhatsApp" class="whatsapp-icon">
   </a>
+
+ <!-- Botón Gmail (mismo mensaje prellenado) -->
+<a href="mailto:ventas.tressesentaconsultoria@gmail.com?subject=Interesado%20en%20tus%20servicios&body=Hola,%20estoy%20interesado"
+   class="gmail-fab" target="_blank" rel="noopener noreferrer">
+  <img src="gmail.png" alt="Gmail" class="gmail-icon">
+</a>
 
 </body>
 </html>
