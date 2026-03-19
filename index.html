@@ -6,8 +6,7 @@
   <title>Visor de Imágenes Profesional</title>
   <style>
     :root {
-      --primary: #ff00ea;     /* Verde WhatsApp actual */
-      --primary-dark: #128C7E;
+      --primary: #25D366;
       --bg: #f8f9fa;
       --card-bg: #ffffff;
       --text: #1f2937;
@@ -15,31 +14,18 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: system-ui, sans-serif;
       min-height: 100vh;
       padding: 20px 16px;
-      line-height: 1.6;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    h1 {
-      font-size: 2.1rem;
-      font-weight: 600;
-      color: var(--text);
-    }
+    header { text-align:center; margin-bottom:2.5rem; }
+    h1 { font-size:2.1rem; font-weight:600; }
 
     .gallery {
       display: flex;
@@ -57,10 +43,7 @@
       transition: var(--transition);
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
 
     .image-wrapper {
       position: relative;
@@ -73,12 +56,9 @@
       height: auto;
       display: block;
       transition: transform 0.6s ease;
-      image-rendering: crisp-edges;
     }
 
-    .image-wrapper:hover img {
-      transform: scale(1.04);
-    }
+    .image-wrapper:hover img { transform: scale(1.04); }
 
     /* Loader */
     .loader {
@@ -91,91 +71,64 @@
       z-index: 10;
       transition: opacity 0.4s;
     }
-
-    .loader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+    .loader.hidden { opacity: 0; pointer-events: none; }
 
     .spinner {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border: 5px solid #e5e7eb;
       border-top: 5px solid var(--primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Botón flotante WhatsApp */
+    /* Botón WhatsApp flotante */
     .whatsapp-fab {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 68px;
-      height: 68px;
+      bottom: 24px; right: 24px;
+      width: 68px; height: 68px;
       background: var(--primary);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
       cursor: pointer;
       z-index: 9999;
       transition: var(--transition);
-      text-decoration: none;
     }
 
-    .whatsapp-fab:hover {
-      transform: scale(1.12) translateY(-4px);
-      box-shadow: 0 12px 32px rgba(37, 211, 102, 0.45);
-    }
+    .whatsapp-fab:hover { transform: scale(1.12) translateY(-4px); box-shadow: 0 12px 32px rgba(37,211,102,0.45); }
+    .whatsapp-fab:active { transform: scale(0.96); }
 
-    .whatsapp-fab:active {
-      transform: scale(0.96);
-    }
-
-    .whatsapp-fab svg {
-      width: 40px;
-      height: 40px;
-      fill: currentColor;
-    }
+    .whatsapp-fab svg { width: 40px; height: 40px; fill: currentColor; }
 
     .whatsapp-fab::after {
       content: "Chatea por WhatsApp";
       position: absolute;
-      right: 90px;
-      top: 50%;
+      right: 90px; top: 50%;
       transform: translateY(-50%);
-      background: #111;
-      color: white;
+      background: #111; color: white;
       padding: 10px 16px;
       border-radius: 8px;
       font-size: 0.95rem;
       white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0; pointer-events: none;
       transition: all 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
+    .whatsapp-fab:hover::after { opacity: 1; transform: translateY(-50%) translateX(-8px); }
 
-    .whatsapp-fab:hover::after {
-      opacity: 1;
-      transform: translateY(-50%) translateX(-8px);
-    }
-
-    /* Área invisible clickable sobre el QR (imagen 2) */
+    /* Área clickable CENTRADA en la imagen 1 (ajusta según donde esté el elemento deseado) */
     .qr-overlay-link {
       position: absolute;
-       /* Centrado aproximado en el QR (ajusta según tu imagen) */
-      bottom: 40%;          /* distancia desde abajo para centrar verticalmente */
-      right: 8%;            /* distancia desde derecha para centrar horizontalmente */
-      width: 26%;           /* ancho del QR – más pequeño para precisión */
-      height: 26%;          /* mismo que width = cuadrado perfecto */
+      
+      /* Centrado aproximado en la imagen 1 – modifica estos valores para centrarlo donde quieras */
+      top: 50%;
+      left: 50%;
+      width: 40%;           /* ancho del área clickable – ajústalo según la zona que quieres cubrir */
+      height: 40%;          /* alto igual para mantener proporción */
+      transform: translate(-50%, -50%);  /* centra perfectamente el overlay */
       
       background: transparent;
       border: none;
@@ -185,26 +138,13 @@
       transition: opacity 0.2s;
     }
 
-    .qr-overlay-link:hover {
-      opacity: 0.08;
-      background: rgba(37, 211, 102, 0.08); /* sutil feedback verde */
-    }
+    /* Feedback sutil opcional */
+    .qr-overlay-link:hover { opacity: 0.05; background: rgba(37,211,102,0.05); }
 
     @media (max-width: 640px) {
-      .whatsapp-fab {
-        bottom: 16px;
-        right: 16px;
-        width: 60px;
-        height: 60px;
-      }
-      .whatsapp-fab svg {
-        width: 36px;
-        height: 36px;
-      }
-      .qr-overlay-link {
-        width: 32%;
-        height: 46%;
-      }
+      .whatsapp-fab { bottom:16px; right:16px; width:60px; height:60px; }
+      .whatsapp-fab svg { width:36px; height:36px; }
+      .qr-overlay-link { width: 45%; height: 45%; }
     }
   </style>
 </head>
@@ -216,41 +156,37 @@
 
   <div class="gallery">
 
-    <!-- Imagen 1 -->
-    <div class="card">
-      <div class="image-wrapper">
-        <div class="loader"><div class="spinner"></div></div>
-        <img src="1.png" alt="Imagen 1" loading="lazy"
-             onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
-      </div>
-    </div>
-
-    <!-- Imagen 2 (con QR clickable) -->
+    <!-- Imagen 1 – ahora con el área clickable centrada -->
     <div class="card">
       <div class="image-wrapper" style="position: relative;">
         <div class="loader"><div class="spinner"></div></div>
-        <img src="2.png" alt="Tarjeta de presentación con QR" loading="lazy"
+        <img src="1.png" alt="Imagen 1" loading="lazy"
              onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
 
-        <!-- Área invisible que hace clickable el QR -->
-        <a href="https://tarjeta360empresarial-dotcom.github.io/Targeta/"
-           target="_blank" 
-           rel="noopener noreferrer"
+        <!-- Área clickable centrada en la imagen 1 -->
+        <a href="https://tressessenta.com"   <!-- ← CAMBIA ESTA URL por la página que deseas -->
+           target="_blank" rel="noopener noreferrer"
            class="qr-overlay-link"
            title="Visitar página web"
-           aria-label="Abrir página web desde el código QR">
+           aria-label="Abrir web desde la imagen">
         </a>
+      </div>
+    </div>
+
+    <!-- Imagen 2 – sin overlay clickable -->
+    <div class="card">
+      <div class="image-wrapper">
+        <div class="loader"><div class="spinner"></div></div>
+        <img src="2.png" alt="Tarjeta con QR" loading="lazy"
+             onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
       </div>
     </div>
 
   </div>
 
-  <!-- Botón flotante WhatsApp -->
-  <a href="https://wa.me/528332932881?text=Hola Estoy interesado" 
-     class="whatsapp-fab" 
-     target="_blank" 
-     rel="noopener noreferrer"
-     title="Contactar por WhatsApp">
+  <!-- Botón WhatsApp flotante -->
+  <a href="https://wa.me/528332555301?text=Hola,%20vi%20la%20tarjeta%20y%20quisiera%20más%20información"
+     class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
     <svg viewBox="0 0 175.216 175.552" xmlns="http://www.w3.org/2000/svg">
       <path d="M87.608 175.552c-12.24 0-24.12-2.16-35.28-6.432L6.48 175.552l6.912-45.36c-5.76-11.52-8.928-24.192-8.928-37.44C4.464 41.328 41.328 4.464 87.608 4.464S170.752 41.328 170.752 87.608c0 46.224-37.008 83.088-83.144 83.944zm0-160.128c-42.336 0-76.752 34.416-76.752 76.752 0 13.824 3.744 27.36 10.8 39.024l-4.176 27.36 27.936-7.344c11.52 6.912 24.624 10.656 37.872 10.656 42.336 0 76.752-34.416 76.752-76.752S129.944 15.424 87.608 15.424z"/>
       <path d="M128.016 105.12c-2.016-1.008-11.808-5.808-13.632-6.48-1.824-.672-3.168-.96-4.512 1.008-1.344 1.968-5.184 6.48-6.336 7.776-1.152 1.344-2.304 1.488-4.32.48-2.016-.96-8.64-3.168-16.416-10.08-6.048-5.376-10.08-11.904-11.232-13.824-.96-1.92-.096-2.976.864-3.936.672-.672 1.92-2.304 2.88-3.456 1.008-1.152 1.344-1.92 2.016-3.168.672-1.248.336-2.304-.336-3.36-.672-1.056-4.512-10.944-6.192-14.976-.672-1.92-1.344-1.68-2.304-1.728-.96-.048-2.016-.048-3.072-.048-1.056 0-2.88.384-4.416 1.92-1.536 1.536-5.76 5.76-5.76 14.016 0 8.256 5.76 16.416 6.624 17.568.864 1.152 12.096 19.008 29.952 26.688 4.32 1.872 7.68 2.976 10.368 3.84 4.32 1.344 8.256 1.152 11.328.672 3.072-.48 9.504-3.84 10.848-7.488 1.344-3.648 1.344-6.912.96-7.488-.384-.576-1.824-1.344-3.84-2.352z"/>
