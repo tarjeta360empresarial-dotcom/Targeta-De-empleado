@@ -18,8 +18,6 @@
 
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, sans-serif;
       min-height: 100vh;
       padding: 20px 16px;
     }
@@ -44,7 +42,6 @@
 
     .image-wrapper {
       position: relative;
-      cursor: pointer;
       overflow: hidden;
     }
 
@@ -78,12 +75,12 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* Botón WhatsApp flotante */
     .whatsapp-fab {
       position: fixed;
       bottom: 24px; right: 24px;
       width: 68px; height: 68px;
       background: var(--primary);
-      color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -94,13 +91,21 @@
       transition: var(--transition);
     }
 
-    .whatsapp-fab:hover { transform: scale(1.12) translateY(-4px); box-shadow: 0 12px 32px rgba(37,211,102,0.45); }
+    .whatsapp-fab:hover {
+      transform: scale(1.12) translateY(-4px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.45);
+    }
+
     .whatsapp-fab:active { transform: scale(0.96); }
 
-    .whatsapp-fab svg { width: 40px; height: 40px; fill: currentColor; }
+    .whatsapp-icon {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
 
     .whatsapp-fab::after {
-      content: "Chatea por WhatsApp";
+      content: "Contacto";
       position: absolute;
       right: 90px; top: 50%;
       transform: translateY(-50%);
@@ -114,6 +119,7 @@
     }
     .whatsapp-fab:hover::after { opacity: 1; transform: translateY(-50%) translateX(-8px); }
 
+    /* Área clickable del QR */
     .qr-overlay-link {
       position: absolute;
       bottom: 40%;
@@ -133,10 +139,10 @@
 
     @media (max-width: 640px) {
       .whatsapp-fab { bottom:16px; right:16px; width:60px; height:60px; }
-      .whatsapp-fab svg { width:36px; height:36px; }
+      .whatsapp-icon { width: 36px; height: 36px; }
       .qr-overlay-link { 
-        width: 28%; 
-        height: 28%; 
+        width: 32%; 
+        height: 32%; 
         transform: translate(8%, 8%); 
       }
     }
@@ -163,8 +169,11 @@
 
   </div>
 
-  <a href="https://wa.me/528332555301?text=Hola,%20vi%20la%20tarjeta%20y%20quisiera%20más%20información"
+  <!-- Botón WhatsApp con imagen WhatsApp.png -->
+  <a href="https://wa.me/528332932881?text=Hola, estoy interesado"
      class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 175.216 175.552" xmlns="http://www.w3.org/2000/svg">
-      <path d="M87.608 175.552c-12.24 0-24.12-2.16-35.28-6.432L6.48 175.552l6.912-45.36c-5.76-11.52-8.928-24.192-8.928-37.44C4.464 41.328 41.328 4.464 87.608 4.464S170.752 41.328 170.752 87.608c0 46.224-37.008 83.088-83.144 83.944zm0-160.128c-42.336 0-76.752 34.416-76.752 76.752 0 13.824 3.744 27.36 10.8 39.024l-4.176 27.36 27.936-7.344c11.52 6.912 24.624 10.656 37.872 10.656 42.336 0 76.752-34.416 76.752-76.752S129.944 15.424 87.608 15.424z"/>
-      <path d="M128.016 105.12c-2.016-1.008-11.808-5.808-13.632-6.48-1.824-.672-3.168-.96-4.512 1.008-1.344 1.968-5.184 6.48-6.336 7.776-1.152 1.344-2.304 1.488-4.32.48-2.016-.96-8.64-3.168-16.416-10.08-6.048-5.376-10.08-11.904-11.232-13.824-.96-1.92-.096-2.976.864-3.936.672-.672 1.92-2.304 2.88-3.456 1.008-1.152 1.344-1.92 2.016-3.168.672-1.248.336-2.304-.336-3.36-.672-1.056-4.512-10.944-6.192-14.976-.672-1.92-1.344-1.68-2.304-1.728-.96-.048-2.016-.048-3.072-.048-1.056 0-2.
+    <img src="WhatsApp.png" alt="WhatsApp" class="whatsapp-icon">
+  </a>
+
+</body>
+</html>
