@@ -9,25 +9,28 @@
       --primary: #25D366;
       --bg: #f8f9fa;
       --card-bg: #ffffff;
-      --text: #1f2937;
       --shadow: 0 10px 30px rgba(0,0,0,0.08);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       background: var(--bg);
       min-height: 100vh;
-      padding: 20px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
     .gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 3.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 900px; /* ajusta este valor si quieres la tarjeta más grande o pequeña */
     }
 
     .card {
@@ -36,9 +39,13 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
+      width: 100%;
     }
 
-    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
 
     img {
       width: 100%;
@@ -47,7 +54,9 @@
       transition: transform 0.6s ease;
     }
 
-    .image-wrapper:hover img { transform: scale(1.04); }
+    .image-wrapper:hover img {
+      transform: scale(1.04);
+    }
 
     .loader {
       position: absolute;
@@ -59,22 +68,32 @@
       z-index: 10;
       transition: opacity 0.4s;
     }
-    .loader.hidden { opacity: 0; pointer-events: none; }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
 
     .spinner {
-      width: 48px; height: 48px;
+      width: 48px;
+      height: 48px;
       border: 5px solid #e5e7eb;
       border-top: 5px solid var(--primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
     /* Botón WhatsApp flotante */
     .whatsapp-fab {
       position: fixed;
-      bottom: 24px; right: 24px;
-      width: 68px; height: 68px;
+      bottom: 24px;
+      right: 24px;
+      width: 68px;
+      height: 68px;
       background: var(--primary);
       border-radius: 50%;
       display: flex;
@@ -91,7 +110,9 @@
       box-shadow: 0 12px 32px rgba(37,211,102,0.45);
     }
 
-    .whatsapp-fab:active { transform: scale(0.96); }
+    .whatsapp-fab:active {
+      transform: scale(0.96);
+    }
 
     .whatsapp-icon {
       width: 42px;
@@ -102,17 +123,24 @@
     .whatsapp-fab::after {
       content: "Contacto";
       position: absolute;
-      right: 90px; top: 50%;
+      right: 90px;
+      top: 50%;
       transform: translateY(-50%);
-      background: #111; color: white;
+      background: #111;
+      color: white;
       padding: 10px 16px;
       border-radius: 8px;
       font-size: 0.95rem;
       white-space: nowrap;
-      opacity: 0; pointer-events: none;
+      opacity: 0;
+      pointer-events: none;
       transition: all 0.3s;
     }
-    .whatsapp-fab:hover::after { opacity: 1; transform: translateY(-50%) translateX(-8px); }
+
+    .whatsapp-fab:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-8px);
+    }
 
     /* Área clickable del QR */
     .qr-overlay-link {
@@ -130,15 +158,26 @@
       transition: opacity 0.2s;
     }
 
-    .qr-overlay-link:hover { opacity: 0.04; background: rgba(37,211,102,0.04); }
+    .qr-overlay-link:hover {
+      opacity: 0.04;
+      background: rgba(37,211,102,0.04);
+    }
 
     @media (max-width: 640px) {
-      .whatsapp-fab { bottom:16px; right:16px; width:60px; height:60px; }
-      .whatsapp-icon { width: 36px; height: 36px; }
-      .qr-overlay-link { 
-        width: 32%; 
-        height: 32%; 
-        transform: translate(8%, 8%); 
+      .whatsapp-fab {
+        bottom: 16px;
+        right: 16px;
+        width: 60px;
+        height: 60px;
+      }
+      .whatsapp-icon {
+        width: 36px;
+        height: 36px;
+      }
+      .qr-overlay-link {
+        width: 32%;
+        height: 32%;
+        transform: translate(8%, 8%);
       }
     }
   </style>
@@ -146,10 +185,12 @@
 <body>
 
   <div class="gallery">
-
     <div class="center">
-      <div class="image-wrapper" style="position: center;">
-        <img src="1.png" alt="Tarjeta con QR" loading="lazy">
+      <div class="image-wrapper" style="position: relative;">
+        <div class="loader"><div class="spinner"></div></div>
+        <img src="1.png" alt="Tarjeta con QR" loading="lazy"
+             onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
+
         <a href="https://tarjeta360empresarial-dotcom.github.io/Targeta/"
            target="_blank" rel="noopener noreferrer"
            class="qr-overlay-link"
@@ -158,11 +199,10 @@
         </a>
       </div>
     </div>
-
   </div>
 
-  <!-- Botón WhatsApp con imagen WhatsApp.png -->
-  <a href="https://wa.me/528332932881?text=Hola, estoy interesado"
+  <!-- Botón WhatsApp con imagen -->
+  <a href="https://wa.me/528332932881?text=Hola,%20estoy%20interesado"
      class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
     <img src="WhatsApp.png" alt="WhatsApp" class="whatsapp-icon">
   </a>
