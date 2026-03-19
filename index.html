@@ -40,11 +40,6 @@
 
     .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
 
-    .image-wrapper {
-      position: relative;
-      overflow: hidden;
-    }
-
     img {
       width: 100%;
       height: auto;
@@ -152,12 +147,9 @@
 
   <div class="gallery">
 
-    <div class="card">
-      <div class="image-wrapper" style="position: relative;">
-        <div class="loader"><div class="spinner"></div></div>
-        <img src="1.png" alt="Tarjeta con QR" loading="lazy"
-             onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
-
+    <div class="center">
+      <div class="image-wrapper" style="position: center;">
+        <img src="1.png" alt="Tarjeta con QR" loading="lazy">
         <a href="https://tarjeta360empresarial-dotcom.github.io/Targeta/"
            target="_blank" rel="noopener noreferrer"
            class="qr-overlay-link"
