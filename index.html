@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tarjeta 360 - Contacto</title>
 
   <style>
     :root {
@@ -26,11 +27,12 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      font-family: sans-serif;
     }
 
     .gallery {
       width: 100%;
-      max-width: 900px; /* ajusta este valor si quieres la tarjeta más grande o pequeña */
+      max-width: 900px;
     }
 
     .card {
@@ -87,7 +89,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Área clickable del QR */
     .qr-overlay-link {
       position: absolute;
       bottom: 77%;
@@ -103,96 +104,11 @@
       transition: opacity 0.2s;
     }
 
-    .qr-overlay-link:hover {
-      opacity: 0.04;
-      background: rgba(37,211,102,0.04);
-    }
-
-    @media (max-width: 640px) {
-      .whatsapp-fab {
-        bottom: 16px;
-        right: 16px;
-        width: 60px;
-        height: 60px;
-      }
-      .whatsapp-icon {
-        width: 36px;
-        height: 36px;
-      }
-      .qr-overlay-link {
-        width: 32%;
-        height: 32%;
-        transform: translate(8%, 8%);
-      }
-    }
-
     /* ==================================================
-       SOLO LO NUEVO AGREGADO PARA EL BOTÓN DE GMAIL
+        BOTONES FLOTANTES (GMAIL Y WHATSAPP)
     ================================================== */
 
-    .gmail-fab {
-      position: fixed;
-      bottom: 24px;
-      right: 100px; /* se coloca a la izquierda del botón WhatsApp */
-      width: 68px;
-      height: 68px;
-      background: #ffffff;
-      border: 1px solid #dadce0;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      cursor: pointer;
-      z-index: 9999;
-      transition: var(--transition);
-    }
-
-    .gmail-fab:hover {
-      transform: scale(1.12) translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
-    }
-
-    .gmail-fab:active {
-      transform: scale(0.96);
-    }
-
-    .gmail-icon {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-    }
-
-    .gmail-fab::after {
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s;
-    }
-
-    .gmail-fab:hover::after {
-      opacity: 1;
-      transform: translateY(-50%) translateX(-8px);
-    }
-
-    @media (max-width: 640px) {
-      .gmail-fab {
-        bottom: 16px;
-        right: 84px;
-        width: 60px;
-        height: 60px;
-      }
-      .gmail-icon {
-        width: 36px;
-        height: 36px;
-      }
-    }
-
-      /* Botón WhatsApp flotante */
+    /* Botón WhatsApp */
     .whatsapp-fab {
       position: fixed;
       bottom: 24px;
@@ -210,43 +126,54 @@
       transition: var(--transition);
     }
 
-    .whatsapp-fab:hover {
+    /* Botón Gmail */
+    .gmail-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 104px; /* Separación del botón de WhatsApp */
+      width: 68px;
+      height: 68px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      cursor: pointer;
+      z-index: 9999;
+      transition: var(--transition);
+    }
+
+    .whatsapp-fab:hover, .gmail-fab:hover {
       transform: scale(1.12) translateY(-4px);
-      box-shadow: 0 12px 32px rgba(37,211,102,0.45);
     }
 
-    .whatsapp-fab:active {
-      transform: scale(0.96);
-    }
-
-    .whatsapp-icon {
-      width: 42px;
-      height: 42px;
+    .whatsapp-icon, .gmail-icon {
+      width: 40px;
+      height: 40px;
       object-fit: contain;
     }
 
-    .whatsapp-fab::after {
-      content: " ";
-      position: absolute;
-      right: 90px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #111;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s;
+    /* Ajustes para móviles */
+    @media (max-width: 640px) {
+      .whatsapp-fab {
+        bottom: 16px;
+        right: 16px;
+        width: 60px;
+        height: 60px;
+      }
+      .gmail-fab {
+        bottom: 16px;
+        right: 88px;
+        width: 60px;
+        height: 60px;
+      }
+      .whatsapp-icon, .gmail-icon {
+        width: 32px;
+        height: 32px;
+      }
     }
-
-    .whatsapp-fab:hover::after {
-      opacity: 1;
-      transform: translateY(-50%) translateX(-8px);
-    }
-
   </style>
 </head>
 <body>
@@ -255,29 +182,49 @@
     <div class="center">
       <div class="image-wrapper" style="position: relative;">
         <div class="loader"><div class="spinner"></div></div>
+        
         <img src="1.png" alt="Tarjeta con QR" loading="lazy"
              onload="this.parentElement.querySelector('.loader').classList.add('hidden')">
+        
         <a href="https://tarjeta360empresarial-dotcom.github.io/Targeta/"
            target="_blank" rel="noopener noreferrer"
            class="qr-overlay-link"
-           title="Visitar página web"
-           aria-label="Abrir web desde el QR">
+           title="Visitar página web">
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Botón WhatsApp con imagen -->
+  <a href="#" id="gmail-dynamic-btn" class="gmail-fab" target="_blank" rel="noopener noreferrer">
+    <img src="gmail.png" alt="Gmail" class="gmail-icon">
+  </a>
+
   <a href="https://wa.me/528332932881?text=Hola,%20estoy%20interesado"
      class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
     <img src="WhatsApp.png" alt="WhatsApp" class="whatsapp-icon">
   </a>
 
- <!-- Botón Gmail (mismo mensaje prellenado) -->
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=ventas.tressesentaconsultoria@gmail.com&body=Hola,%20estoy%20interesado"
-   class="gmail-fab" target="_blank" rel="noopener noreferrer">
-  <img src="gmail.png" alt="Gmail" class="gmail-icon">
-</a>
+  <script>
+    (function() {
+      const gmailBtn = document.getElementById('gmail-dynamic-btn');
+      
+      // Detectar si es móvil o tablet
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+      const email = "ventas.tressesentaconsultoria@gmail.com";
+      const subject = encodeURIComponent("Interesado en tus servicios");
+      const body = encodeURIComponent("Hola, estoy interesado");
+
+      // URL para PC (Interfaz web de Gmail)
+      const desktopUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+      
+      // URL para Móvil (App nativa)
+      const mobileUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+
+      // Asignar el link correspondiente
+      gmailBtn.href = isMobile ? mobileUrl : desktopUrl;
+    })();
+  </script>
 
 </body>
 </html>
